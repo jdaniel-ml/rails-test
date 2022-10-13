@@ -5,10 +5,13 @@ RSpec.describe Auction, :type => :model do
     described_class.new(title: "Anything",
                         description: "Lorem ipsum",
                         start_date: DateTime.now,
-                        end_date: DateTime.now + 1.week,
-                        user_id: 1)
+                        end_date: DateTime.now + 1.week)
   }
 
+  describe "Associations" do
+    it { should belong_to(:user).without_validating_presence }
+  end
+  
   it "is valid with valid attributes" do
     expect(subject).to be_valid
   end
